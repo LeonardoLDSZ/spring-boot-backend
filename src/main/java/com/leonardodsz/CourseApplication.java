@@ -25,6 +25,8 @@ import com.leonardodsz.repositories.CidadeRepository;
 import com.leonardodsz.repositories.ClienteRepository;
 import com.leonardodsz.repositories.EnderecoRepository;
 import com.leonardodsz.repositories.EstadoRepository;
+import com.leonardodsz.repositories.PagamentoRepository;
+import com.leonardodsz.repositories.PedidoRepository;
 import com.leonardodsz.repositories.ProdutoRepository;
 
 @SpringBootApplication
@@ -42,6 +44,10 @@ public class CourseApplication implements CommandLineRunner{
 	private ClienteRepository clienteRepository;
 	@Autowired
 	private EnderecoRepository enderecoRepository;
+	@Autowired
+	private PedidoRepository pedidoRepository;
+	@Autowired
+	private PagamentoRepository pagamentoRepository;
 
 	
 	public static void main(String[] args) {
@@ -105,7 +111,8 @@ public class CourseApplication implements CommandLineRunner{
 		
 		cli1.getPedidos().addAll(Arrays.asList(ped1,ped2));
 		
-		
+		pedidoRepository.saveAll(Arrays.asList(ped1,ped2));
+		pagamentoRepository.saveAll(Arrays.asList(pagto1,pagto2));
 		
 	}
 
