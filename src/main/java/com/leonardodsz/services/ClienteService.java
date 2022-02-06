@@ -18,8 +18,8 @@ import com.leonardodsz.domain.Endereco;
 import com.leonardodsz.domain.enums.TipoCliente;
 import com.leonardodsz.dto.ClienteDTO;
 import com.leonardodsz.dto.ClienteNewDTO;
-import com.leonardodsz.repositories.CidadeRepository;
 import com.leonardodsz.repositories.ClienteRepository;
+import com.leonardodsz.repositories.EnderecoRepository;
 import com.leonardodsz.services.exceptions.DataIntegrityException;
 import com.leonardodsz.services.exceptions.ObjectNotFoundException;
 
@@ -30,7 +30,7 @@ public class ClienteService {
 	private ClienteRepository repo; //dependencia
 	
 	@Autowired
-	private CidadeRepository cidadeRepository;
+	private EnderecoRepository enderecoRepository;
 	
 	public Cliente find(Integer id) {
 		Optional<Cliente> obj = repo.findById(id);
@@ -42,7 +42,7 @@ public class ClienteService {
 	public Cliente insert(Cliente obj) {
 		obj.setId(null);
 		obj = repo.save(obj);
-		//enderecoRepository.saveAll(obj.getEnderecos());
+		enderecoRepository.saveAll(obj.getEnderecos());
 		return obj;
 	}
 	
@@ -59,7 +59,7 @@ public class ClienteService {
 			repo.deleteById(id);
 		}
 		catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Não é possível excluir porque há entidades relacionadas");
+			throw new DataIntegrityException("Não é possível excluir porque há pedidos relacionados");
 		}
 	}
 	
@@ -77,7 +77,7 @@ public class ClienteService {
 	}
 	
 	public Cliente fromDTO(ClienteNewDTO objDto) {
-		Cliente cli = new Cliente(null, objDto.getNome(),objDto.getEmail(), objDto.getCpfOuCnpj(), TipoCliente.toEnum(objDto.getTipo()));
+		Cliente cli = new Cliente(null, objDto.getNome(), objDto.getEmail(), objDto.getCpfOuCnpj(), TipoCliente.toEnum(objDto.getTipo()));
 		Cidade cid = new Cidade(objDto.getCidadeId(), null, null);
 		Endereco end = new Endereco(null, objDto.getLogradouro(), objDto.getNumero(), objDto.getComplemento(), objDto.getBairro(), objDto.getCep(), cli, cid);
 		cli.getEnderecos().add(end);
