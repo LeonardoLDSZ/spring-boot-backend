@@ -37,8 +37,6 @@ public class PedidoService {
 	@Autowired
 	private ItemPedidoRepository itemPedidoRepository;
 	
-	
-	
 	public Pedido find(Integer id) {
 		Optional<Pedido> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
@@ -53,7 +51,6 @@ public class PedidoService {
 		if(obj.getPagamento() instanceof PagamentoComBoleto) {
 			PagamentoComBoleto pagto = (PagamentoComBoleto) obj.getPagamento();
 			boletoService.preencherPagamentoComboleto(pagto, obj.getInstante());
-					
 		}
 		obj = repo.save(obj);
 		pagamentoRepository.save(obj.getPagamento());
@@ -63,7 +60,8 @@ public class PedidoService {
 			ip.setPreco(ip.getProduto().getPreco());
 			ip.setPedido(obj);
 		}
-		itemPedidoRepository.saveAll(obj.getItens());		
+		itemPedidoRepository.saveAll(obj.getItens());
+		System.out.println(obj);
 		return obj;
 	}
 }
