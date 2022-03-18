@@ -1,10 +1,8 @@
 package com.leonardodsz.domain;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.text.NumberFormat;
+import java.util.*;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -128,6 +126,7 @@ public class Pedido implements Serializable {
 
 	@Override
 	public String toString() {
+		NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
 		StringBuilder builder = new StringBuilder();
 		builder.append("Pedido número: ");
 		builder.append(getId());
@@ -142,7 +141,7 @@ public class Pedido implements Serializable {
 			builder.append(ip.toString());
 		}
 		builder.append("Valor total: ");
-		builder.append(getValorTotal());
+		builder.append(nf.format(getValorTotal()));
 		return builder.toString();
 	}
 }
