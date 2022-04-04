@@ -24,7 +24,7 @@ public class Categoria implements Serializable {
 	private List<Produto> produtos = new ArrayList<>();
 	
 	public Categoria () {
-	} //instacio objeto sem envolver os atributos
+	} //instancio objeto sem envolver os atributos
 
 	public Categoria(Integer id, String nome) {
 		super();

@@ -1,7 +1,5 @@
 package com.leonardodsz.domain.enums;
 
-import com.leonardodsz.domain.enums.EstadoPagamento;
-
 public enum EstadoPagamento {
 	
 	PENDENTE(1, "Pendente"),
