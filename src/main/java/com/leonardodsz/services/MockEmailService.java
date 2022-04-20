@@ -2,6 +2,7 @@ package com.leonardodsz.services;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.autoconfigure.mail.MailSenderAutoConfiguration;
 import org.springframework.mail.SimpleMailMessage;
 
 public class MockEmailService extends AbstractEmailService {
@@ -14,4 +15,11 @@ public class MockEmailService extends AbstractEmailService {
         LOG.info("E-mail enviado!");
 
     }
+    @Override
+    public void sendEmail(MailSenderAutoConfiguration msg) {
+        // TODO Auto-generated method stub
+        
+    }
 }
+
+
