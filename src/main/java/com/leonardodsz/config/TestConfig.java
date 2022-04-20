@@ -2,7 +2,7 @@ package com.leonardodsz.config;
 
 import com.leonardodsz.services.DBService;
 import com.leonardodsz.services.EmailService;
-import com.leonardodsz.services.MockEmailService;
+//import com.leonardodsz.services.MockEmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,9 +23,9 @@ public class TestConfig {
         return true;
     }
 
-    @Bean
-    public EmailService emailService(){
-        return new MockEmailService();
-    }
+//    @Bean
+//    public EmailService emailService(){
+//        return new MockEmailService();
+//    }
 
 }

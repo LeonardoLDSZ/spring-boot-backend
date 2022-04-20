@@ -2,6 +2,7 @@ package com.leonardodsz.services;
 
 import com.leonardodsz.domain.Pedido;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.SimpleMailMessage;
 
 import java.util.Date;
 
