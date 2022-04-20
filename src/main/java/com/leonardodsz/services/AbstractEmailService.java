@@ -1,10 +1,11 @@
 package com.leonardodsz.services;
 
-import com.leonardodsz.domain.Pedido;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
-
-import java.util.Date;
+import com.leonardodsz.domain.Cliente;
+import com.leonardodsz.domain.Pedido;
 
 public abstract class AbstractEmailService implements EmailService {
 
@@ -16,11 +17,12 @@ public abstract class AbstractEmailService implements EmailService {
         SimpleMailMessage sm = prepareSimpleMailMessageFromPedido(obj);
         sendEmail(sm);
     }
+
     protected SimpleMailMessage prepareSimpleMailMessageFromPedido(Pedido obj) {
         SimpleMailMessage sm = new SimpleMailMessage();
         sm.setTo(obj.getCliente().getEmail());
         sm.setFrom(sender);
-        sm.setSubjet("Pedido confirmado! Código: " + obj.getId());
+        sm.setSubject("Pedido confirmado! Código: " + obj.getId());
         sm.setSentDate(new Date(System.currentTimeMillis()));
         sm.setText(obj.toString());
         return sm;
